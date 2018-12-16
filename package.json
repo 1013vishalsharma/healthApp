@@ -1,0 +1,11 @@
+{
+  "name": "healthtraining",
+  "version": "1.0.0",
+  "description": "App that tracks health and exercise status for an individual per day/week/month basis ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@vs",
+  "license": "ISC"
+}
