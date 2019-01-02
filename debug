@@ -1,0 +1,30 @@
+debug: app started {"timestamp":"2018-12-16T11:04:51.910Z"}
+debug: app started {"timestamp":"2018-12-16T11:05:28.128Z"}
+info: app started {"timestamp":"2018-12-16T11:05:50.385Z"}
+info: app started {"timestamp":"2018-12-18T14:33:06.203Z"}
+error: could not connect to mongo db {"timestamp":"2018-12-18T14:33:06.390Z"}
+info: app started {"timestamp":"2018-12-18T14:33:54.347Z"}
+error: could not connect to mongo db {"timestamp":"2018-12-18T14:33:54.413Z"}
+info: app started {"timestamp":"2018-12-18T14:37:35.905Z"}
+info: app started {"timestamp":"2018-12-18T14:39:16.670Z"}
+error: could not connect to mongo db {"timestamp":"2018-12-18T14:39:16.759Z"}
+info: app started {"timestamp":"2018-12-18T14:45:51.357Z"}
+error: could not connect to mongo db null {"timestamp":"2018-12-18T14:45:51.397Z"}
+info: app started {"timestamp":"2018-12-18T14:50:06.480Z"}
+error: could not connect to mongo db null {"timestamp":"2018-12-18T14:50:06.532Z"}
+info: app started {"timestamp":"2018-12-18T14:51:18.160Z"}
+error: could not connect to mongo db null {"timestamp":"2018-12-18T14:51:18.208Z"}
+info: app started {"timestamp":"2018-12-18T15:18:26.807Z"}
+info: app started {"timestamp":"2018-12-18T15:19:37.828Z"}
+info: app started {"timestamp":"2018-12-20T03:27:01.612Z"}
+info: app started {"timestamp":"2018-12-20T03:36:09.933Z"}
+info: app started {"timestamp":"2018-12-20T03:36:35.694Z"}
+info: app started {"timestamp":"2018-12-20T03:37:59.001Z"}
+info: app started {"timestamp":"2018-12-20T03:39:38.191Z"}
+info: app started {"timestamp":"2018-12-28T02:19:23.318Z"}
+info: app started {"timestamp":"2018-12-28T02:20:21.150Z"}
+info: app started {"timestamp":"2018-12-28T02:25:32.243Z"}
+info: app started {"timestamp":"2018-12-28T02:25:52.844Z"}
+info: app started {"timestamp":"2018-12-28T02:50:50.373Z"}
+info: app started {"timestamp":"2018-12-28T02:53:12.828Z"}
+info: app started {"timestamp":"2018-12-28T02:54:18.724Z"}
