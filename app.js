@@ -10,12 +10,16 @@ const helper = require('./common/helper')
 const passport = require('passport')
 const user = require('./models/user').userModel
 const mongoose = require('mongoose')
+const localStrategy = require('passport-local').Strategy;
+const routes = require('./routes')
 
 app.use(passport.initialize())
 //app.set('port', port)
 
 //starting db
 helper.initDB()
+
+app.use('/', routes)
 
 //helper.initData()
 

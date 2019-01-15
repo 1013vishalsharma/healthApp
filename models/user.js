@@ -25,10 +25,6 @@ const userSchema = new schema({
     weight: {
         type: Number,
         required: false
-    },
-    jwt: {
-        type: String,
-        required: true
     }
 })
 
