@@ -13,7 +13,22 @@ const userSchema = new schema({
     email: {
         type: String,
         required: [true, 'not a valid email']
-        //match: '/\S+@\S+\.\S+/'
+    },
+    age: {
+        type: Number,
+        required: false
+    },
+    sex: {
+        type: String,
+        required: false
+    },
+    weight: {
+        type: Number,
+        required: false
+    },
+    jwt: {
+        type: String,
+        required: true
     }
 })
 
