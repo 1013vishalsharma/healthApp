@@ -12,8 +12,12 @@ const user = require('./models/user').userModel
 const mongoose = require('mongoose')
 const localStrategy = require('passport-local').Strategy;
 const routes = require('./routes')
+const bodyParser = require('body-parser')
+require('./common/passport-auth')
 
+app.use(bodyParser.json());
 app.use(passport.initialize())
+app.use(bodyParser.urlencoded({extended:true}))
 //app.set('port', port)
 
 //starting db
@@ -26,10 +30,10 @@ app.use('/', routes)
 //helper.getUser()
 //console.log(user1)
 
-app.get('/', (req, res) => {
-    //res.send('hello')
-    helper.getUser(res)
-})
+// app.get('/', (req, res) => {
+//     //res.send('hello')
+//     helper.getUser(res)
+// })
 
 app.listen(port, () => {
     console.log('app started, listening on port '+port)

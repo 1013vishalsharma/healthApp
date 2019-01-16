@@ -4,13 +4,14 @@ const userModel = require('../models/user')
 const bcrypt = require('bcrypt')
 
 passport.use('signup', new LocalStrategy({
-    usernameField: email,
-    passwordField: password},
-    async (email, password, done) => {
+    usernameField: "email",
+    passwordField: "password"},
+     (email, password, done) => {
         try {
-            const hash = await bcrypt.hash(password, 13)
-            const user = await userModel.userModel.create({
-                email, hash
+            const hash = bcrypt.hash(password, 13)
+            console.log(hash)
+            const user = userModel.userModel.create({
+                email, password
             })
             return done(null, user)
         } catch (error) {

@@ -9,7 +9,7 @@ function initDB() {
     mongoose.connect(MONGO_URI)
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'DB conn error'))
-    console.log(db.collections)
+    //console.log(db.collections)
 }
 
 function initData(){
