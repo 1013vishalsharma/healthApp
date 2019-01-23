@@ -20,3 +20,12 @@ git status
 git commit -m "message"
 
 git push origin <branch name>
+
+#-------to check a branch
+git branch
+
+#-------to take latest code from master
+git pull origin master
+
+#-------to switch to a new branch
+git checkout <branch name>
