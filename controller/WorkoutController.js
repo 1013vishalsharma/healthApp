@@ -1,3 +1,6 @@
-function addOrUpdateWorkoutdetails(req, res){
-
+function addOrUpdateWorkoutdetails(user, req, res){
+    console.log(user)
 }
+
+
+module.exports = addOrUpdateWorkoutdetails()

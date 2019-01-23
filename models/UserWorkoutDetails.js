@@ -9,6 +9,10 @@ const userWorkoutDetailsSchema = new schema({
     moneyCollected: {
         type: number,
         required: false,
+    },
+    moneyCollected: {
+        type: number,
+        required: false,
         default: 0
     },
     hrsleft: {
