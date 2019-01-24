@@ -14,26 +14,18 @@ const localStrategy = require('passport-local').Strategy;
 const routes = require('./routes')
 const bodyParser = require('body-parser')
 require('./common/passport-auth')
+const loginRoute = require('./routes/LoginRoute')
 
 app.use(bodyParser.json());
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({extended:true}))
-//app.set('port', port)
 
 //starting db
 helper.initDB()
 
-app.use('/', routes)
-
+//app.use('/', routes)
+app.use('/user', loginRoute)
 //helper.initData()
-
-//helper.getUser()
-//console.log(user1)
-
-// app.get('/', (req, res) => {
-//     //res.send('hello')
-//     helper.getUser(res)
-// })
 
 app.listen(port, () => {
     console.log('app started, listening on port '+port)

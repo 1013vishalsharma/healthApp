@@ -18,7 +18,7 @@ const userWorkoutDetailsSchema = new schema({
     },
     workoutTime: {
         type: Date,
-        default: Date.now(),
+        default: null,
         required: false
     },
     workedOutOrNot: {
@@ -28,6 +28,7 @@ const userWorkoutDetailsSchema = new schema({
     },
     workoutType:{
         type: string,
+        default:'-',
         required: false
     }
 })

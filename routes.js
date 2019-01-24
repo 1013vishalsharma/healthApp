@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const config = require('./config/default')
+const workoutController = require('./controller/WorkoutController')
 
 const router = express.Router()
 
@@ -15,31 +16,20 @@ router.post('/signup', passport.authenticate('signup', { session: false }),
         return res.json({ token })
     })
 
-router.post('/login', passport.authenticate('login', { session: false }),
-    (req, res, next) => {
-        console.log('inside login method----------------')
-        const payload = { email: req.body.email}
-        const signOpt = {
-            issuer:  config.ISSUER,
-            subject:  req.body.email,
-            expiresIn:  config.EXPIRES_IN,
-            algorithm:  config.ALGORITHM
-        }
-        const token = jwt.sign(payload, config.JWT_SECRET, signOpt)
-        return res.json({token})
-    })
+// router.post('/login', passport.authenticate('login', { session: false }),
+//     (req, res, next) => {
+//         console.log('inside login method----------------')
+//         const payload = { email: req.body.email}
+//         const signOpt = {
+//             issuer:  config.ISSUER,
+//             subject:  req.body.email,
+//             expiresIn:  config.EXPIRES_IN,
+//             algorithm:  config.ALGORITHM
+//         }
+//         const token = jwt.sign(payload, config.JWT_SECRET, signOpt)
+//         return res.json({token})
+//     })
 
-
-    // app.get('/login', function(req, res, next) {
-    //     passport.authenticate('local', function(err, user, info) {
-    //       if (err) { return next(err); }
-    //       if (!user) { return res.redirect('/login'); }
-    //       req.logIn(user, function(err) {
-    //         if (err) { return next(err); }
-    //         return res.redirect('/users/' + user.username);
-    //       });
-    //     })(req, res, next);
-    //   });
 
     router.get('/signin', function(req, res, next) {
         passport.authenticate('jwt', {session:false}, function(err, user, info) {
@@ -54,13 +44,24 @@ router.post('/login', passport.authenticate('login', { session: false }),
                 res.status(200).json(
                     {msg: 'user logged in'}
                 );
-            }
-            // req.logIn(user, function(err) {
-            //     if (err) { return next(err); }
-            //     return res.redirect('/users/' + user.username);
-            //   });
-            
+            }  
         })(req, res, next);
+    })
+
+
+    router.get('/user/workout', function(req, res, next) {
+        passport.authenticate('jwt', {session:false}, function (err, user, info) {
+            console.log('inside workout----')
+            if(!user){
+                next(err)
+            }
+            if(err){
+                next(err)
+            }
+            else if(user){
+                workoutController.addOrUpdateWorkoutdetails(user, req, res)
+            }
+        })(req, res, next)
     })
 
     
