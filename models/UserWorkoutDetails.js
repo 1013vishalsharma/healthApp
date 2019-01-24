@@ -9,10 +9,6 @@ const userWorkoutDetailsSchema = new schema({
     moneyCollected: {
         type: number,
         required: false,
-    },
-    moneyCollected: {
-        type: number,
-        required: false,
         default: 0
     },
     hrsleft: {
@@ -22,7 +18,7 @@ const userWorkoutDetailsSchema = new schema({
     },
     workoutTime: {
         type: Date,
-        default: Date.now(),
+        default: null,
         required: false
     },
     workedOutOrNot: {
@@ -32,6 +28,7 @@ const userWorkoutDetailsSchema = new schema({
     },
     workoutType:{
         type: string,
+        default:'-',
         required: false
     }
 })

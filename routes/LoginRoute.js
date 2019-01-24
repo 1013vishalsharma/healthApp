@@ -1,0 +1,21 @@
+const express = require('express')
+const jwt = require('jsonwebtoken')
+const LocalStrategy = require('passport-local').Strategy
+const passport = require('passport')
+const logincontroller = require('../controller/LoginController')
+const router = express.Router();
+
+
+router.post('/login', passport.authenticate('login', {session:false}),
+    (req, res, next) => {
+        logincontroller.login(req, res)
+    })
+
+
+router.post('/register', (req, res, next) => {
+    logincontroller.register(req, res)
+})
+
+
+
+module.exports = router
