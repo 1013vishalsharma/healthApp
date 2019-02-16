@@ -5,11 +5,12 @@ const userSchema = new schema({
      username: {
          type: String,
          required: true, 
-         //unique: true
+         unique: true
      },
     email: {
         type: String,
-        required: [true, 'not a valid email']
+        required: [true, 'not a valid email'],
+        unique:true
     },
     password: {
         type: String,
@@ -27,7 +28,7 @@ const userSchema = new schema({
         type: Number,
         required: false
     }
-})
+}).index({username:1, email:1})
 
 
 const userModel = mongoose.model('user',userSchema)

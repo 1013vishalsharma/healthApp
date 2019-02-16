@@ -2,34 +2,35 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const userWorkoutDetailsSchema = new schema({
-    username: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+    user: {
+        type: mongoose.Schema.Types.String,
+        ref: 'user',
+        //required: true
     },
     moneyCollected: {
-        type: number,
-        required: false,
+        type: Number,
+        required: true,
         default: 0
     },
     hrsleft: {
-        type: number,
+        type: Number,
         default: 0,
-        required: false
+        required: true
     },
     workoutTime: {
         type: Date,
-        default: null,
-        required: false
+        default: Date.now,
+        required: true
     },
     workedOutOrNot: {
-        type: boolean,
+        type: Boolean,
         default: false,
-        required: false
+        required: true
     },
     workoutType:{
-        type: string,
+        type: String,
         default:'-',
-        required: false
+        required: true
     }
 })
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const config = require('config')
 const MONGO_URI = config.get('DB_URL')
 const logger = require('./logger')
-const userModel = require('../models/user').userModel
+const userModel = require('../models/User').userModel
 
 function initDB() { 
     //connecting to mongo db
