@@ -7,7 +7,8 @@ function login(req, res){
 }
 
 function register(req, res){
-    loginService.register(req)
+    var wrkout = loginService.register(req)
+    return res.json(wrkout)
 }
 
 module.exports = {

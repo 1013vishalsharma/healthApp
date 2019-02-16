@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const userModel = require('../models/user')
+const userModel = require('../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const jwtStrategy = require('passport-jwt').Strategy
@@ -24,6 +24,7 @@ passport.use(new jwtStrategy(opts, (token, done) => {
         }
         if(user){
             console.log(token.sub)
+            console.log('-------user----------')
             console.log(user)
             return done(null, user)
         }
@@ -57,6 +58,8 @@ passport.use('login', new LocalStrategy({
 },
 async(email, password, done) => {
     const user = userModel.userModel.findOne({email})
+    console.log('-------user----------')
+    console.log(user)
     if(!user){
         console.log('user not found')
         return done(null, false, {message : 'user not found'})

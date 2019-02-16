@@ -8,13 +8,11 @@ const app = express()
 const port = config.get('SERVER_PORT')
 const helper = require('./common/helper')
 const passport = require('passport')
-const user = require('./models/user').userModel
 const mongoose = require('mongoose')
-const localStrategy = require('passport-local').Strategy;
-const routes = require('./routes')
 const bodyParser = require('body-parser')
 require('./common/passport-auth')
 const loginRoute = require('./routes/LoginRoute')
+const workoutRoute = require('./routes/WorkoutRoute')
 
 app.use(bodyParser.json());
 app.use(passport.initialize())
@@ -25,6 +23,7 @@ helper.initDB()
 
 //app.use('/', routes)
 app.use('/user', loginRoute)
+app.use('/workout', workoutRoute)
 //helper.initData()
 
 app.listen(port, () => {
@@ -32,6 +31,3 @@ app.listen(port, () => {
 })
 
 logger.info('app started')
-
-
-
