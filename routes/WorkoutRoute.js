@@ -12,7 +12,7 @@ router.get('/', (req, res, next) =>{
             next(err);
         }
         else if(user){
-            workoutController.addOrUpdateWorkoutdetails(req, res, user)
+            workoutController.getWorkoutdetails(req, res, user)
         }
     })(req, res, next)
 })

@@ -175,3 +175,84 @@ info: app started {"timestamp":"2019-02-15T15:45:33.288Z"}
 info: app started {"timestamp":"2019-02-16T10:45:09.883Z"}
 info: app started {"timestamp":"2019-02-16T10:47:40.148Z"}
 info: app started {"timestamp":"2019-02-16T11:18:19.887Z"}
+info: app started on 3000 {"timestamp":"2019-02-18T03:05:33.347Z"}
+info: app started on 3000 {"timestamp":"2019-02-18T03:06:19.624Z"}
+info: inside Workoutcontroller for adding workout {"timestamp":"2019-02-18T03:10:00.281Z"}
+info: inside workoutservice, method addOrUpdateWorkoutdetails {"timestamp":"2019-02-18T03:10:00.282Z"}
+info: exiting workoutservice, method addOrUpdateWorkoutdetails {"timestamp":"2019-02-18T03:10:00.287Z"}
+info: app started on 3000 {"timestamp":"2019-02-18T17:05:58.294Z"}
+info: app started on 3000 {"timestamp":"2019-02-19T03:24:36.182Z"}
+info: app started on 3000 {"timestamp":"2019-02-19T03:25:54.291Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-19T03:26:46.057Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-19T03:26:46.059Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-19T03:26:46.109Z"}
+info: exiting login service, method passwordreset {"timestamp":"2019-02-19T03:26:46.123Z"}
+info: mail sent, exiting helper, method sendEmail <6b06d542-290a-bf3d-dd07-227a9dc27539@gmail.com> {"timestamp":"2019-02-19T03:26:53.934Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-19T03:28:00.968Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-19T03:28:07.573Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-19T03:28:27.378Z"}
+info: exiting login service, method passwordreset {"timestamp":"2019-02-19T03:28:27.378Z"}
+info: mail sent, exiting helper, method sendEmail <c023163a-fdac-7a6b-9a3e-7e9d11ab7c71@gmail.com> {"timestamp":"2019-02-19T03:29:18.552Z"}
+info: app started on 3000 {"timestamp":"2019-02-19T03:30:28.184Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-19T03:30:35.082Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-19T03:30:36.616Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-19T03:30:38.893Z"}
+info: exiting login service, method passwordreset {"timestamp":"2019-02-19T03:30:39.806Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-19T03:30:56.111Z"}
+info: app started on 3000 {"timestamp":"2019-02-19T03:34:10.226Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-19T03:34:20.689Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-19T03:34:20.702Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-19T03:34:20.703Z"}
+info: exiting login service, method passwordreset {"timestamp":"2019-02-19T03:34:20.723Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-19T03:34:27.088Z"}
+info: app started on 3000 {"timestamp":"2019-02-19T03:36:13.258Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-19T03:36:17.945Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-19T03:36:17.945Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-19T03:36:17.946Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-19T03:36:23.815Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-19T03:36:23.815Z"}
+info: app started on 3000 {"timestamp":"2019-02-20T02:41:44.794Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-20T02:41:52.991Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-20T02:41:52.992Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-20T02:41:52.993Z"}
+info: user: ssfpmdmvyawscbqq@ethereal.email {"timestamp":"2019-02-20T02:41:54.832Z"}
+info: pass: YsvTcrtCZB8ew5De3C {"timestamp":"2019-02-20T02:41:54.832Z"}
+info: Preview url: https://ethereal.email/message/XGy-cubtaQzqoPSIXGy-dyfxCQy7pbBmAAAAAbIKCneL9NLqsYxjPNnzgnc {"timestamp":"2019-02-20T02:41:59.534Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-20T02:41:59.534Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-20T02:41:59.534Z"}
+info: app started on 3000 {"timestamp":"2019-02-20T02:44:18.962Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-20T02:44:24.365Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-20T02:44:24.366Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-20T02:44:24.366Z"}
+info: user: uxgecsbd2e2a4ffl@ethereal.email {"timestamp":"2019-02-20T02:44:25.659Z"}
+info: pass: JvFtcFYxHvMzgmVCcp {"timestamp":"2019-02-20T02:44:25.659Z"}
+info: Preview url: https://ethereal.email/message/XGy.CebtaQzqoPTVXGy.D42TXwy5MCeFAAAAAZCdgWFXX8tSjjsoyCVd4aQ {"timestamp":"2019-02-20T02:44:31.649Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-20T02:44:31.650Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-20T02:44:31.650Z"}
+info: app started on 3000 {"timestamp":"2019-02-20T02:45:06.519Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-20T02:45:11.041Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-20T02:45:11.042Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-20T02:45:11.042Z"}
+info: user: yjt4km43psxvwmjk@ethereal.email {"timestamp":"2019-02-20T02:45:13.034Z"}
+info: pass: uBWZerKqTx5CcbC92N {"timestamp":"2019-02-20T02:45:13.034Z"}
+info: Preview url: https://ethereal.email/message/XGy.OObtaQzqoPUzXGy.PSfxCQy7pbB1AAAAAVHImAsx1Hxai91OLjSIqn0 {"timestamp":"2019-02-20T02:45:17.739Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-20T02:45:17.739Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-20T02:45:17.740Z"}
+info: app started on 3000 {"timestamp":"2019-02-20T02:45:59.003Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-20T02:46:02.436Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-20T02:46:02.437Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-20T02:46:02.439Z"}
+info: user: xgkbd6pom73ypu6a@ethereal.email {"timestamp":"2019-02-20T02:46:04.244Z"}
+info: pass: SPAtREpwxdtMFt3nBW {"timestamp":"2019-02-20T02:46:04.244Z"}
+info: Preview url: https://ethereal.email/message/XGy.a-btaQzqoPVPXGy.cI2TXwy5MCeNAAAAARzOVyPcCcV9ZNb3GbPARLQ {"timestamp":"2019-02-20T02:46:09.257Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-20T02:46:09.257Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-20T02:46:09.257Z"}
+info: app started on 3000 {"timestamp":"2019-02-20T02:47:34.072Z"}
+info: inside login controller, method passwordreset {"timestamp":"2019-02-20T02:47:37.713Z"}
+info: inside login service, method password reset {"timestamp":"2019-02-20T02:47:37.714Z"}
+info: inside helper, method sendemail {"timestamp":"2019-02-20T02:47:37.714Z"}
+info: user: isqvqbsry4adanag@ethereal.email {"timestamp":"2019-02-20T02:47:38.792Z"}
+info: pass: zsnRUfZAAygeZdEduf {"timestamp":"2019-02-20T02:47:38.792Z"}
+info: Preview url: https://ethereal.email/message/XGy.yubtaQzqoPW4XGy.zifxCQy7pbB9AAAAAYqRMGQlbyPCMYx6lN8Y3PQ {"timestamp":"2019-02-20T02:47:42.276Z"}
+info: mail sent, exiting helper, method sendEmail {"timestamp":"2019-02-20T02:47:42.276Z"}
+info: exiting login service, method passwordReset {"timestamp":"2019-02-20T02:47:42.276Z"}
