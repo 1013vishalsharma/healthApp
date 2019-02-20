@@ -3,8 +3,12 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const userModel = require('../models/User').userModel
 const userWorkoutDetailsModel = require('../models/UserWorkoutDetails').userWorkoutDetailsModel
+const logger = require('../common/logger')
+const helper = require('../common/helper')
+
 
 function login(req){
+    logger.info('inside login service, method login')
     const payload = { email: req.body.email}
     const signOpt = {
         issuer:  config.ISSUER,
@@ -13,11 +17,13 @@ function login(req){
         algorithm:  config.ALGORITHM
     }
     const token = jwt.sign(payload, config.JWT_SECRET, signOpt)
+    logger.info('token created, exiting login service, login method')
     return token;
 }
 
 
 async function register(req){
+    logger.info('inside login service, register method')
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
@@ -33,11 +39,21 @@ async function register(req){
     const workoutDetails = await userWorkoutDetailsModel.create({
         user: user.username
     })
-    console.log('---------------')
+    logger.info('created user and users workout data in db,' +
+    + 'exiting login service method rgister')
     return workoutDetails;
+}
+
+async function passwordReset(req){
+    logger.info('inside login service, method password reset')
+    const email = req.body.email;
+    await helper.sendEmail(email)
+    logger.info('exiting login service, method passwordReset')
+    return;
 }
 
 module.exports = {
     login,
-    register
+    register,
+    passwordReset
 }

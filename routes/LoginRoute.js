@@ -17,5 +17,10 @@ router.post('/register', (req, res, next) => {
 })
 
 
+router.post('/password/reset', (req, res, next) => {
+    logincontroller.passwordReset(req, res)
+})
+
+
 
 module.exports = router
