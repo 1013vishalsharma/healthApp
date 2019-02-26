@@ -29,3 +29,16 @@ git pull origin master
 
 #-------to switch to a new branch
 git checkout <branch name>
+
+#-------to check to which git repo you are connected to
+git remote -v
+
+#-------if somebody has commited some code from another branch say b1 into master
+ and you are working on some other branch say b2, then first you need to update
+ your branch with origin/masters content and have b2 data
+ 1) git checkout master 
+ 2) git pull origin master
+ 3) git checkout b2
+ 4) git rebase master
+
+ 
