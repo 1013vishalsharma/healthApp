@@ -11,7 +11,7 @@ async function getWorkoutdetails(req, res, user1){
 
 async function updateWorkoutDetails(req, res, user1){
     logger.info('inside workoutservice, method updateWorkoutDetails')
-    var username = user1.username
+    var username = user1.username;
     const workoutDetails = await userWorkoutDetails.update(
         {user: username},
         req.body
