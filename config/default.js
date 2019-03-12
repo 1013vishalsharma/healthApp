@@ -1,7 +1,7 @@
 module.exports = {
     SERVER_PORT: 3000,
     LOG_LEVEL: 'debug',
-    DB_URL: 'mongodb://127.0.0.1:27017/healthApp',
+    DB_URL: 'mongodb+srv://admin:admin@mongo-cluster-w8n2g.mongodb.net/healthApp?retryWrites=true',
     JWT_SECRET: 'SECRET',
     ISSUER: 'HEALTH_APP',
     EXPIRES_IN: '12h',
