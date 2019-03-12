@@ -14,9 +14,9 @@ require('./common/passport-auth')
 const loginRoute = require('./routes/LoginRoute')
 const workoutRoute = require('./routes/WorkoutRoute')
 const cors = require('cors');
-
 var subpath = express();
 
+app.use(cutomMiddleWare);
 app.use(bodyParser.json())
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,7 +33,13 @@ app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
 
 app.listen(port, () => {
-    console.log('app started, listening on port ' + port)
+    console.log('app started, listening on port ' + port);
 })
 
-logger.info('app started on ' + port)
+logger.info('app started on ' + port);
+
+//this works as a middleware
+function cutomMiddleWare(req, resp, next) {
+    console.log('will connect with mongodb cloud now.........');
+    next();
+}
