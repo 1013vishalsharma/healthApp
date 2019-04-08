@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const jwtStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
 const config = require('../config/default')
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 var opts = {}
 opts.jwtFromRequest = extractJwt.fromAuthHeaderAsBearerToken();
@@ -15,9 +16,6 @@ opts.issuer = config.ISSUER;
 
 passport.use(new jwtStrategy(opts, (token, done) => {
     console.log('token: '+token)
-    //var verified = jwt.verify(token, config.JWT_SECRET)
-    //console.log('verified token: '+verified)
-
     userModel.userModel.findOne({ email: token.sub }, (err, user) => {
         if(err){
             return done(err, false)
@@ -32,7 +30,7 @@ passport.use(new jwtStrategy(opts, (token, done) => {
             return done(null, false)
         }
     })
-}))
+}));
 
 
 passport.use('login', new LocalStrategy({
@@ -52,6 +50,17 @@ async(email, password, done) => {
         return done(null, user, {message : 'user logged in'})
     }
     return done(error)
-}
+}));
 
-))
+
+passport.use(new GoogleStrategy ({
+    clientID: config.GOOGLE_CLIENT_ID,
+    clientSecret: config.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/auth/google/callback'
+},
+function(req, accessToken, refreshToken, profile, done) {
+    console.log(req);
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return done(err, user);  
+    });
+}));
