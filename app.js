@@ -32,6 +32,19 @@ app.use('/workout', workoutRoute)
 app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
 
+//----------google oauth start-------------
+app.get('/auth/google',
+passport.authenticate('google', { scope: 
+    ['profile'] }
+));
+
+app.get( '/auth/google/callback', 
+passport.authenticate( 'google', { 
+    successRedirect: '/auth/google/success',
+    failureRedirect: '/auth/google/failure'
+}));
+//---------google oauth test ends------------
+
 app.listen(port, () => {
     console.log('app started, listening on port ' + port);
 })
