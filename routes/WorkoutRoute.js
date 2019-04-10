@@ -31,4 +31,4 @@ router.post('/update', (req, res, next) => {
     })(req, res, next)
 } )
 
-module.exports = router
+module.exports = router;
