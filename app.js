@@ -13,6 +13,7 @@ const bodyParser = require('body-parser')
 require('./common/passport-auth')
 const loginRoute = require('./routes/LoginRoute')
 const workoutRoute = require('./routes/WorkoutRoute')
+const googleAuthRoute = require('./routes/GoogleAuthRoute');
 const cors = require('cors');
 var subpath = express();
 
@@ -28,22 +29,23 @@ helper.initDB()
 
 app.use('/user', loginRoute)
 app.use('/workout', workoutRoute)
+app.use('/auth', googleAuthRoute);
 
 app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
 
-//----------google oauth start-------------
-app.get('/auth/google',
-passport.authenticate('google', { scope: 
-    ['profile'] }
-));
+// //----------google oauth start-------------
+// app.get('/auth/google',
+// passport.authenticate('google', { scope: 
+//     ['profile'] }
+// ));
 
-app.get( '/auth/google/callback', 
-passport.authenticate( 'google', { 
-    successRedirect: '/auth/google/success',
-    failureRedirect: '/auth/google/failure'
-}));
-//---------google oauth test ends------------
+// app.get( '/auth/google/callback', 
+// passport.authenticate( 'google', { 
+//     successRedirect: '/auth/google/success',
+//     failureRedirect: '/auth/google/failure'
+// }));
+// //---------google oauth test ends------------
 
 app.listen(port, () => {
     console.log('app started, listening on port ' + port);

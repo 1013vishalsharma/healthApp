@@ -14,7 +14,7 @@ const userSchema = new schema({
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     age: {
         type: Number,
