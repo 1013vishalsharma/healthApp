@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const config = require('../config/default');
 const userModel = require('../models/User').userModel;
 const userWorkoutDetailsModel = require('../models/UserWorkoutDetails').userWorkoutDetailsModel;
+const userDetailsModel = require('../models/UserDetails').userDetailsModel;
 const logger = require('../common/logger');
 const helper = require('../common/helper');
 
@@ -35,6 +36,15 @@ async function register(req) {
         password: hash,
         email: email
     });
+
+    const userDetailsModel = await userDetailsModel.create({
+        user: user.username,
+        firstname: req.firstname,
+        lastname: req.lastname,
+        // if(req.age != null)
+        // age: req.age 
+
+    })
 
     const workoutDetails = await userWorkoutDetailsModel.create({
         user: user.username,
