@@ -15,18 +15,6 @@ const userSchema = new schema({
     password: {
         type: String,
         required: false
-    },
-    age: {
-        type: Number,
-        required: false
-    },
-    sex: {
-        type: String,
-        required: false
-    },
-    weight: {
-        type: Number,
-        required: false
     }
 }).index({username:1, email:1})
 
