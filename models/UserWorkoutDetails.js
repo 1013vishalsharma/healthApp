@@ -17,7 +17,7 @@ const userWorkoutDetailsSchema = new schema({
         default: 0,
         required: true
     },
-    workoutTime: {
+    workoutDate: {
         type: Date,
         default: Date.now,
         required: true
@@ -30,6 +30,15 @@ const userWorkoutDetailsSchema = new schema({
     workoutType:{
         type: String,
         default:'-',
+        required: true
+    },
+    foodType: {
+        type: String,
+        default: 'Healthy',
+        required: true
+    },
+    workoutDuration: {
+        type: Number,
         required: true
     }
 })

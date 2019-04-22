@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
-app.use(express.static('dist'));
+//app.use(express.static('dist'));
 
 // starting db
 helper.initDB()
@@ -33,19 +33,6 @@ app.use('/auth', googleAuthRoute);
 
 app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
-
-// //----------google oauth start-------------
-// app.get('/auth/google',
-// passport.authenticate('google', { scope: 
-//     ['profile'] }
-// ));
-
-// app.get( '/auth/google/callback', 
-// passport.authenticate( 'google', { 
-//     successRedirect: '/auth/google/success',
-//     failureRedirect: '/auth/google/failure'
-// }));
-// //---------google oauth test ends------------
 
 app.listen(port, () => {
     console.log('app started, listening on port ' + port);
