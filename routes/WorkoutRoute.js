@@ -15,7 +15,21 @@ router.get('/', (req, res, next) =>{
             workoutController.getWorkoutdetails(req, res, user)
         }
     })(req, res, next)
-})
+});
+
+router.post('/', (req, res, next) => {
+    passport.authenticate('jwt', {session: false}, (err, user, info) => {
+        if(err){
+            next(err);
+        }
+        else if(!user){
+            next(err);
+        }
+        else if(user){
+            workoutController.addWorkoutDetails(req, res, user);
+        }
+    })(req, res, next)
+});
 
 router.post('/update', (req, res, next) => {
     passport.authenticate('jwt', {session:false}, (err, user, info) => {
@@ -29,6 +43,6 @@ router.post('/update', (req, res, next) => {
             workoutController.updateWorkoutDetails(req, res, user)
         }
     })(req, res, next)
-} )
+});
 
 module.exports = router;

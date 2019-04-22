@@ -19,8 +19,32 @@ async function updateWorkoutDetails(req, res, user1) {
     logger.info('workout updated, exiting workoutservice, method updateWorkoutDetails');
 }
 
+async function addWorkoutDetails(req, res, user) {
+    logger.info('inside workout service, method addWorkoutDetails');
+    const moneyCollected = 10;
+    const workedOutOrNot = true;
+    const workoutDuration = req.body.workoutDuration;
+    const hrsLeft = (Number(workoutDuration) >= .5) ? 0 : (0 - .5);
+    const workoutDate = new Date(req.body.workoutDate);
+
+    const addUserWorkoutDetails = await userWorkoutDetails.create({
+        user: user.username,
+        moneyCollected: moneyCollected,
+        hrsLeft: hrsLeft,
+        workoutDate: workoutDate,
+        workedOutOrNot: workedOutOrNot,
+        workoutType: req.body.workoutType,
+        foodType: req.body.foodType,
+        workoutDuration: req.body.workoutDuration, 
+    });
+
+    console.log('addUserWorkoutDetails ' + addUserWorkoutDetails);
+    return addWorkoutDetails;
+}
+
 
 module.exports = {
     getWorkoutdetails,
     updateWorkoutDetails,
+    addWorkoutDetails,
 };

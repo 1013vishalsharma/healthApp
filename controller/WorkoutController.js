@@ -11,8 +11,15 @@ async function updateWorkoutDetails(req, res, user){
     res.send(await workoutService.updateWorkoutDetails(req, res, user))
 }
 
+async function addWorkoutDetails(req, res, user){
+    logger.info('inside Workout controller for adding a new workout details');
+    const addWorkoutDetails = await workoutService.addWorkoutDetails(req, res, user);
+    res.send(addWorkoutDetails);
+}
+
 
 module.exports = {
     getWorkoutdetails,
-    updateWorkoutDetails
+    updateWorkoutDetails,
+    addWorkoutDetails
 }
