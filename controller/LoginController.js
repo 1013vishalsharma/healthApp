@@ -9,7 +9,7 @@ function login(req, res){
 }
 
 function register(req, res){
-    logger.info('inside login controller, method register')
+    logger.info('inside login controller, method register');
     var wrkout = loginService.register(req)
     return res.json(wrkout)
 }
