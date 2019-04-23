@@ -37,20 +37,33 @@ async function register(req) {
         email: email
     });
 
-    const userDetailsModel = await userDetailsModel.create({
-        user: user.username,
-        firstname: req.firstname,
-        lastname: req.lastname,
-        // if(req.age != null)
-        // age: req.age 
+    const userDetailsToAdd = {};
+    userDetailsToAdd.user = user.username;
+    userDetailsToAdd.firstname = req.body.firstname;
+    userDetailsToAdd.lastname = req.body.lastname;
 
+    if(req.body.age != undefined){
+        userDetailsToAdd.age = Number(req.body.age);
+    }
+    if(req.body.sex != undefined){
+        userDetailsToAdd.sex = req.body.sex;
+    }
+    if(req.body.weight != undefined){
+        userDetailsToAdd.weight = Number(req.body.weight);
+    }
+    if(req.body.image != undefined){
+        userDetailsToAdd.image = req.body.image;
+    }
+
+    const userDetailsModels = await userDetailsModel.create({
+        userDetailsToAdd
     })
 
     const workoutDetails = await userWorkoutDetailsModel.create({
         user: user.username,
     });
-    logger.info('created user and users workout data in db,' +
-    + 'exiting login service method rgister');
+    logger.info('created user, user details and users workout data in db,' +
+    + 'exiting login service method register');
     return workoutDetails;
 }
 
