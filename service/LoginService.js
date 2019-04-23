@@ -55,16 +55,16 @@ async function register(req) {
         userDetailsToAdd.image = req.body.image;
     }
 
-    const userDetailsModels = await userDetailsModel.create({
+    const userDetailsModels = await userDetailsModel.create(
         userDetailsToAdd
-    })
+    );
 
-    const workoutDetails = await userWorkoutDetailsModel.create({
-        user: user.username,
-    });
+    // const workoutDetails = await userWorkoutDetailsModel.create({
+    //     user: user.username,
+    // });
     logger.info('created user, user details and users workout data in db,' +
     + 'exiting login service method register');
-    return workoutDetails;
+    return userDetailsModels;
 }
 
 async function passwordReset(req) {

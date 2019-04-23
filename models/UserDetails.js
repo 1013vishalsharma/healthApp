@@ -37,4 +37,4 @@ const userDetailsModel = mongoose.model('userDetails', userDetailsSchema);
 module.exports = {
     userDetailsModel,
     userDetailsSchema
-}
+} 
