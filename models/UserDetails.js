@@ -27,7 +27,7 @@ const userDetailsSchema = new schema({
         required: false
     },
     image: {
-        type: Buffer,
+        type: String,
         required: false
     }
 });
