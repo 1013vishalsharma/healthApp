@@ -74,8 +74,15 @@ async function passwordReset(req) {
     logger.info('exiting login service, method passwordReset');
 }
 
+async function registerViaGoogle(req, profile){
+    logger.info('inside login service, method registerViaGoogle');
+    console.log(req);
+    console.log(profile);
+}
+
 module.exports = {
     login,
     register,
     passwordReset,
+    registerViaGoogle,
 };

@@ -21,8 +21,13 @@ async function passwordReset(req, res){
     return res.sendStatus(200);
 }
 
+async function registerViaGoogle(req, res){
+    logger.info('inside login controller, method registerViaGoogle');
+}
+
 module.exports = {
     login,
     register,
-    passwordReset
+    passwordReset,
+    registerViaGoogle,
 }

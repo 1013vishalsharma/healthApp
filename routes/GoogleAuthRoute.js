@@ -4,7 +4,9 @@ const passport = require('passport');
 
 
 router.get('/google', passport.authenticate('google', 
-    { scope: ['profile', 'email', 'https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.me']}
+    { scope: ['profile', 'email', 'https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/profile.agerange.read', 'openid', 
+    'https://www.googleapis.com/auth/user.birthday.read']}
 ));
 
 router.get('/google/callback', passport.authenticate('google', {

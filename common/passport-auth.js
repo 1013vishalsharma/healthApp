@@ -7,6 +7,7 @@ const jwtStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
 const config = require('../config/default')
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const loginService = require('../service/LoginService');
 
 var opts = {}
 opts.jwtFromRequest = extractJwt.fromAuthHeaderAsBearerToken();
@@ -58,11 +59,22 @@ passport.use(new GoogleStrategy ({
     clientSecret: config.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/google/callback'
 },
-function(req, accessToken, refreshToken, profile, done) {
+async function(req, accessToken, refreshToken, profile, done) {
     console.log(profile);
-
-    //userModel.findOrCreate({profile})
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return done(err, user);  
+    const user = await userModel.userModel.findOne({email: profile.email}, (err, user) => {
+        if(err){
+            loginService.registerViaGoogle(req, profile);
+            return;
+        }
+        if(user){
+            console.log(token.sub)
+            console.log('-------user----------')
+            console.log(user)
+            return done(null, user)
+        }
+        else{
+            loginService.registerViaGoogle(req, profile);
+            return done(null, false)
+        }
     });
 }));
