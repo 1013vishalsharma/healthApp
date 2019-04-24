@@ -61,20 +61,14 @@ passport.use(new GoogleStrategy ({
 },
 async function(req, accessToken, refreshToken, profile, done) {
     console.log(profile);
-    const user = await userModel.userModel.findOne({email: profile.email}, (err, user) => {
-        if(err){
-            loginService.registerViaGoogle(req, profile);
-            return;
-        }
+    const user = await userModel.userModel.findOne({email: profile.email}, async (err, user) => {
         if(user){
-            console.log(token.sub)
-            console.log('-------user----------')
-            console.log(user)
-            return done(null, user)
+            console.log("user already exists with email: " +user);
+            return done(null, false , {message: 'user already exists with the email'});
         }
         else{
-            loginService.registerViaGoogle(req, profile);
-            return done(null, false)
+            const user1 = await loginService.registerViaGoogle(req, profile);
+            return done(null, user, {message: 'user registered via google profile'});
         }
     });
 }));

@@ -78,6 +78,38 @@ async function registerViaGoogle(req, profile){
     logger.info('inside login service, method registerViaGoogle');
     console.log(req);
     console.log(profile);
+    const registerUser = {};
+    const user = {};
+    const { given_name, family_name, picture, email, birthday, gender } = profile;
+    if(given_name != undefined){
+        registerUser.firstname = given_name
+    }
+    if(family_name != undefined){
+        registerUser.lastname = family_name;
+    }
+    if(email != undefined){
+        user.email = email;
+    }
+    if(picture != undefined) {
+        registerUser.image = picture;
+    }
+    if(birthday != undefined) {
+        const age = helper.getAge(birthday);
+        registerUser.age = age;
+    }
+    if(gender != undefined) {
+        registerUser.sex = gender;
+    }
+    user.username = given_name + '.1' + family_name;
+
+    const createdUser = await userModel.create (user);
+    registerUser.user = createdUser.username;
+    await userDetailsModel.create(registerUser);
+
+    // const workoutDetails = await userWorkoutDetailsModel.create({
+    //     user: user.username,
+    // });
+    return user;
 }
 
 module.exports = {
