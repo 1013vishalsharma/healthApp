@@ -70,5 +70,7 @@ async function(req, accessToken, refreshToken, profile, done) {
             const user1 = await loginService.registerViaGoogle(req, profile);
             return done(null, user, {message: 'user registered via google profile'});
         }
+        //return done(err, user);
     });
+
 }));
