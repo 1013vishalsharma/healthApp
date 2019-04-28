@@ -64,7 +64,7 @@ async function(req, accessToken, refreshToken, profile, done) {
     const user = await userModel.userModel.findOne({email: profile.email}, async (err, user) => {
         if(user){
             console.log("user already exists with email: " +user);
-            return done(null, false , {message: 'user already exists with the email'});
+            return done(err, false , {message: 'user already exists with the email'});
         }
         else{
             const user1 = await loginService.registerViaGoogle(req, profile);

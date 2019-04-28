@@ -15,6 +15,16 @@ const userSchema = new schema({
     password: {
         type: String,
         required: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
+    modifiedAt:{
+        type: Date,
+        default: Date.now,
+        required: true
     }
 }).index({username:1, email:1})
 
