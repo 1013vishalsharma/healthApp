@@ -45,8 +45,8 @@ async function register(req) {
     if(req.body.age != undefined){
         userDetailsToAdd.age = Number(req.body.age);
     }
-    if(req.body.sex != undefined){
-        userDetailsToAdd.sex = req.body.sex;
+    if(req.body.gender != undefined){
+        userDetailsToAdd.gender = req.body.gender;
     }
     if(req.body.weight != undefined){
         userDetailsToAdd.weight = Number(req.body.weight);
@@ -98,7 +98,7 @@ async function registerViaGoogle(req, profile){
         registerUser.age = age;
     }
     if(gender != undefined) {
-        registerUser.sex = gender;
+        registerUser.gender = gender;
     }
     user.username = given_name + '.1' + family_name;
 

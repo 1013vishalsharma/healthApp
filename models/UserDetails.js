@@ -18,7 +18,11 @@ const userDetailsSchema = new schema({
         type: Number,
         required: false
     },
-    sex: {
+    height: {
+        type: Number,
+        required: false
+    },
+    gender: {
         type: String,
         required: false
     },
@@ -29,6 +33,16 @@ const userDetailsSchema = new schema({
     image: {
         type: String,
         required: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
+    modifiedAt:{
+        type: Date,
+        default: Date.now,
+        required: true
     }
 });
 

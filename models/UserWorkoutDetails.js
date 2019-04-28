@@ -40,6 +40,16 @@ const userWorkoutDetailsSchema = new schema({
     workoutDuration: {
         type: Number,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
+    modifiedAt:{
+        type: Date,
+        default: Date.now,
+        required: true
     }
 })
 
