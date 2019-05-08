@@ -13,7 +13,7 @@ router.post('/login', passport.authenticate('login', {session:false}),
 
 
 router.post('/register', (req, res, next) => {
-    logincontroller.register(req, res);
+    logincontroller.register(req, res, next);
 });
 
 router.post('registerViaGoogle', (req, res, next) => {

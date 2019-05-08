@@ -8,9 +8,16 @@ function login(req, res){
     return res.json({token})
 }
 
-function register(req, res){
+function register(req, res, next){
     logger.info('inside login controller, method register');
-    var wrkout = loginService.register(req)
+    try{
+        loginService.register(req);
+    }
+    catch(error){
+        console.log("error in controller: "+error);
+        next(error);
+        //res.json({'errMsg': error});
+    }
     return res.json(wrkout)
 }
 

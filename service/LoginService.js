@@ -22,99 +22,109 @@ function login(req) {
     return token;
 }
 
-
+/**
+ * Method to register the user
+ * @param {*} req - The request object 
+ */
 async function register(req) {
     logger.info('inside login service, register method');
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
+    //creating hash of the password
     const hash = await bcrypt.hash(password, 10);
 
-    const user = await userModel.create({
+    userModel.create({
         username: username,
         password: hash,
         email: email
-    });
+    })
+        .then(user => {
+            const userDetailsToAdd = {};
+            userDetailsToAdd.user = user.username;
+            userDetailsToAdd.firstname = req.body.firstname;
+            userDetailsToAdd.lastname = req.body.lastname;
 
-    const userDetailsToAdd = {};
-    userDetailsToAdd.user = user.username;
-    userDetailsToAdd.firstname = req.body.firstname;
-    userDetailsToAdd.lastname = req.body.lastname;
+            if (req.body.age != undefined) {
+                userDetailsToAdd.age = Number(req.body.age);
+            }
+            if (req.body.gender != undefined) {
+                userDetailsToAdd.gender = req.body.gender;
+            }
+            if (req.body.weight != undefined) {
+                userDetailsToAdd.weight = Number(req.body.weight);
+            }
+            if (req.body.image != undefined) {
+                userDetailsToAdd.image = req.body.image;
+            }
 
-    if(req.body.age != undefined){
-        userDetailsToAdd.age = Number(req.body.age);
-    }
-    if(req.body.gender != undefined){
-        userDetailsToAdd.gender = req.body.gender;
-    }
-    if(req.body.weight != undefined){
-        userDetailsToAdd.weight = Number(req.body.weight);
-    }
-    if(req.body.image != undefined){
-        userDetailsToAdd.image = req.body.image;
-    }
+            userDetailsModel.create(
+                userDetailsToAdd
+            )
+            .catch(err => {
+                //console.log("Error in creating userdetails is: "+err);
+                throw err;
+            });
+        })
+        .catch(err => {
+            //console.log("error in creating user: "+err);
+            throw new Error(err);
+        })
 
-    const userDetailsModels = await userDetailsModel.create(
-        userDetailsToAdd
-    );
-
-    // const workoutDetails = await userWorkoutDetailsModel.create({
-    //     user: user.username,
-    // });
-    logger.info('created user, user details and users workout data in db,' +
-    + 'exiting login service method register');
-    return userDetailsModels;
-}
+        logger.info('created user, user details and users workout data in db,' +
+            + 'exiting login service method register');
+        //return addedUserDetails;
+    }
 
 async function passwordReset(req) {
-    logger.info('inside login service, method password reset');
-    const email = req.body.email;
-    await helper.sendEmail(email);
-    logger.info('exiting login service, method passwordReset');
-}
+            logger.info('inside login service, method password reset');
+            const email = req.body.email;
+            await helper.sendEmail(email);
+            logger.info('exiting login service, method passwordReset');
+        }
 
-async function registerViaGoogle(req, profile){
-    logger.info('inside login service, method registerViaGoogle');
-    console.log(req);
-    console.log(profile);
-    const registerUser = {};
-    const user = {};
-    const { given_name, family_name, picture, email, birthday, gender } = profile;
-    if(given_name != undefined){
-        registerUser.firstname = given_name
-    }
-    if(family_name != undefined){
-        registerUser.lastname = family_name;
-    }
-    if(email != undefined){
-        user.email = email;
-    }
-    if(picture != undefined) {
-        registerUser.image = picture;
-    }
-    if(birthday != undefined) {
-        const age = helper.getAge(birthday);
-        registerUser.age = age;
-    }
-    if(gender != undefined) {
-        registerUser.gender = gender;
-    }
-    user.username = given_name + '.1' + family_name;
+async function registerViaGoogle(req, profile) {
+            logger.info('inside login service, method registerViaGoogle');
+            console.log(req);
+            console.log(profile);
+            const registerUser = {};
+            const user = {};
+            const { given_name, family_name, picture, email, birthday, gender } = profile;
+            if (given_name != undefined) {
+                registerUser.firstname = given_name
+            }
+            if (family_name != undefined) {
+                registerUser.lastname = family_name;
+            }
+            if (email != undefined) {
+                user.email = email;
+            }
+            if (picture != undefined) {
+                registerUser.image = picture;
+            }
+            if (birthday != undefined) {
+                const age = helper.getAge(birthday);
+                registerUser.age = age;
+            }
+            if (gender != undefined) {
+                registerUser.gender = gender;
+            }
+            user.username = given_name + '.1' + family_name;
 
-    const createdUser = await userModel.create (user);
-    registerUser.user = createdUser.username;
-    await userDetailsModel.create(registerUser);
+            const createdUser = await userModel.create(user);
+            registerUser.user = createdUser.username;
+            await userDetailsModel.create(registerUser);
 
-    // const workoutDetails = await userWorkoutDetailsModel.create({
-    //     user: user.username,
-    // });
-    return user;
-}
+            // const workoutDetails = await userWorkoutDetailsModel.create({
+            //     user: user.username,
+            // });
+            return user;
+        }
 
 module.exports = {
-    login,
-    register,
-    passwordReset,
-    registerViaGoogle,
-};
+            login,
+            register,
+            passwordReset,
+            registerViaGoogle,
+        };
