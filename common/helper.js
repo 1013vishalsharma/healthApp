@@ -76,10 +76,21 @@ function getAge(dateString) {
 }
 
 
+function ignoreCase(str1, str2){
+    let i = str1.localeCompare(str2 , undefined, {sensitivity: 'accent'});
+    if(i == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 module.exports = {
     initDB,
     initData,
     getUser,
     sendEmail,
-    getAge
+    getAge,
+    ignoreCase,
 }

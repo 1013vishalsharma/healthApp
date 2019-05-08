@@ -1,4 +1,5 @@
 const logger = require('../common/logger');
+const helper = require('../common/helper');
 const userWorkoutDetails = require('../models/UserWorkoutDetails').userWorkoutDetailsModel;
 
 async function getWorkoutdetails(req, res, user1) {
@@ -21,11 +22,29 @@ async function updateWorkoutDetails(req, res, user1) {
 
 async function addWorkoutDetails(req, res, user) {
     logger.info('inside workout service, method addWorkoutDetails');
-    const moneyCollected = 10;
+    //const moneyCollected = 10;
     const workedOutOrNot = true;
     const workoutDuration = req.body.workoutDuration;
-    const hrsLeft = (Number(workoutDuration) >= .5) ? 0 : (0 - .5);
+    const hrsLeft = (Number(workoutDuration) >= .5) ? hrsLeft : (0 - .5);
     const workoutDate = new Date(req.body.workoutDate);
+
+    //if(moneyCollected == )
+
+    const latestUserWorkoutDetails = await userWorkoutDetails.findOne
+        ( { user: user.username } ) 
+        .sort( { _id : -1 } )
+        .limit(1);
+    console.log(latestUserWorkoutDetails);
+    
+    let hrsLeft = latestUserWorkoutDetails.hrsLeft;
+    let moneyCollected = latestUserWorkoutDetails.moneyCollected + 10;
+    let foodType = req.body.FoodType;
+    if(helper.ignoreCase(foodType, 'unhealthy')){
+        hrsLeft = (Number(workoutDuration) >= .5) ? hrsLeft : (hrsLeft - .5);
+    }
+
+
+
 
     const addUserWorkoutDetails = await userWorkoutDetails.create({
         user: user.username,
