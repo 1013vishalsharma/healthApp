@@ -20,15 +20,14 @@ async function updateWorkoutDetails(req, res, user1) {
     logger.info('workout updated, exiting workoutservice, method updateWorkoutDetails');
 }
 
+/**
+ * add activity to mongo
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} user 
+ */
 async function addWorkoutDetails(req, res, user) {
     logger.info('inside workout service, method addWorkoutDetails');
-    //const moneyCollected = 10;
-    const workedOutOrNot = true;
-    const workoutDuration = req.body.workoutDuration;
-    const hrsLeft = (Number(workoutDuration) >= .5) ? hrsLeft : (0 - .5);
-    const workoutDate = new Date(req.body.workoutDate);
-
-    //if(moneyCollected == )
 
     const latestUserWorkoutDetails = await userWorkoutDetails.findOne
         ( { user: user.username } ) 
@@ -36,29 +35,40 @@ async function addWorkoutDetails(req, res, user) {
         .limit(1);
     console.log(latestUserWorkoutDetails);
     
-    let hrsLeft = latestUserWorkoutDetails.hrsLeft;
-    let moneyCollected = latestUserWorkoutDetails.moneyCollected + 10;
-    let foodType = req.body.FoodType;
+    // set type of food consumed
+    let foodType = req.body.foodType;
+
+    // set money collected for new activity
+    let moneyCollected;
     if(helper.ignoreCase(foodType, 'unhealthy')){
-        hrsLeft = (Number(workoutDuration) >= .5) ? hrsLeft : (hrsLeft - .5);
+        moneyCollected = latestUserWorkoutDetails.moneyCollected + 10;
+    }
+    else{
+        moneyCollected = latestUserWorkoutDetails.moneyCollected + 25;
     }
 
+    // set the extra time left to cover up based on the type of food
+    let hrsLeft = (Number(latestUserWorkoutDetails.hrsLeft));
+    if(helper.ignoreCase(foodType, 'unhealthy')){
+        hrsLeft = hrsLeft + .5;
+    }
 
-
+    // set the workout date
+    const workoutDate = new Date(req.body.workoutDate);
 
     const addUserWorkoutDetails = await userWorkoutDetails.create({
         user: user.username,
         moneyCollected: moneyCollected,
         hrsLeft: hrsLeft,
         workoutDate: workoutDate,
-        workedOutOrNot: workedOutOrNot,
+        workedOutOrNot: true,
         workoutType: req.body.workoutType,
-        foodType: req.body.foodType,
+        foodType: foodType,
         workoutDuration: req.body.workoutDuration, 
     });
 
     console.log('addUserWorkoutDetails ' + addUserWorkoutDetails);
-    return addWorkoutDetails;
+    return addUserWorkoutDetails;
 }
 
 
