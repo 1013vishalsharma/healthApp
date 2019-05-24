@@ -29,32 +29,55 @@ async function updateWorkoutDetails(req, res, user1) {
 async function addWorkoutDetails(req, res, user) {
     logger.info('inside workout service, method addWorkoutDetails');
 
-    const latestUserWorkoutDetails = await userWorkoutDetails.findOne
-        ( { user: user.username } ) 
-        .sort( { _id : -1 } )
-        .limit(1);
+    let latestUserWorkoutDetails;
+    //check if we are updating or adding the workout details
+    latestUserWorkoutDetails = await userWorkoutDetails.findOne({
+        user: user.username,
+        workoutDate: new Date(req.body.workoutDate)
+    });
+
+    if (latestUserWorkoutDetails == undefined || latestUserWorkoutDetails == null) {
+        latestUserWorkoutDetails = await userWorkoutDetails.findOne
+            ({ user: user.username })
+            .sort({ _id: -1 })
+            .limit(1);
+        
+        logger.info('creating workout details for date: '+req.body.workoutDate);    
+    }
+    else{
+        logger.info('updating workout details for date: '+req.body.workoutDate);
+    }
     console.log(latestUserWorkoutDetails);
-    
+
     // set type of food consumed
     let foodType = req.body.foodType;
 
     // set money collected for new activity
     let moneyCollected;
-    if(helper.ignoreCase(foodType, 'unhealthy')){
+    if (helper.ignoreCase(foodType, 'unhealthy')) {
         moneyCollected = latestUserWorkoutDetails.moneyCollected + 10;
     }
-    else{
+    else {
         moneyCollected = latestUserWorkoutDetails.moneyCollected + 25;
     }
 
     // set the extra time left to cover up based on the type of food
-    let hrsLeft = (Number(latestUserWorkoutDetails.hrsLeft));
-    if(helper.ignoreCase(foodType, 'unhealthy')){
+    let hrsLeft = latestUserWorkoutDetails.hrsleft;
+    if ((Number(req.body.workoutDuration)) < 35) {
         hrsLeft = hrsLeft + .5;
     }
+    if (helper.ignoreCase(foodType, 'unhealthy') && (Number(req.body.workoutDuration)) >= 35) {
+        hrsLeft = hrsLeft + .5;
+    }
+    else if (hrsLeft > 0 && (Number(req.body.workoutDuration)) >= 35) {
+        hrsLeft = hrsLeft - .5;
+    }
 
-    // set the workout date
-    const workoutDate = new Date(req.body.workoutDate);
+    // set the extra time left to cover up based on the type of food
+    //let hrsLeft = (Number(latestUserWorkoutDetails.hrsLeft));
+    if (req.body.workoutDuration)
+        // set the workout date
+        workoutDate = new Date(req.body.workoutDate);
 
     const addUserWorkoutDetails = await userWorkoutDetails.create({
         user: user.username,
@@ -64,7 +87,7 @@ async function addWorkoutDetails(req, res, user) {
         workedOutOrNot: true,
         workoutType: req.body.workoutType,
         foodType: foodType,
-        workoutDuration: req.body.workoutDuration, 
+        workoutDuration: req.body.workoutDuration,
     });
 
     console.log('addUserWorkoutDetails ' + addUserWorkoutDetails);
