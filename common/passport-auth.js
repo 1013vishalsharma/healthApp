@@ -8,6 +8,7 @@ const extractJwt = require('passport-jwt').ExtractJwt
 const config = require('../config/default')
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const loginService = require('../service/LoginService');
+const helper = require('../common/helper');
 
 var opts = {}
 opts.jwtFromRequest = extractJwt.fromAuthHeaderAsBearerToken();
@@ -35,11 +36,25 @@ passport.use(new jwtStrategy(opts, (token, done) => {
 
 
 passport.use('login', new LocalStrategy({
-    usernameField : 'email',
+    usernameField : 'loginInfo',
     passwordField : 'password'
 },
-async(email, password, done) => {
-    const user = userModel.userModel.findOne({email})
+async(loginInfo, password, done) => {
+    //check wheather its email or username
+    let emailOrNot = helper.validateEmail(loginInfo);
+
+    let body;
+    if(emailOrNot == true){
+        body = {
+            email: loginInfo
+        }
+    }
+    else{
+        body = {
+            username: loginInfo
+        }
+    }
+    const user = await userModel.userModel.findOne(body);
     console.log('-------user----------')
     console.log(user)
     if(!user){
@@ -47,8 +62,15 @@ async(email, password, done) => {
         return done(null, false, {message : 'user not found'})
     }
     else{
-        console.log('user found')
-        return done(null, user, {message : 'user logged in'})
+        let isPasswordMatched = await bcrypt.compare(password, user.password);
+        if(!isPasswordMatched){
+            console.log('password incorrect')
+            return done(null, false, {message : 'password entered is incorrect'})
+        }
+        else{
+            console.log('user found')
+            return done(null, user, {message : 'user logged in'})
+        }
     }
     return done(error)
 }));
