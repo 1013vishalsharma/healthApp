@@ -10,10 +10,19 @@ const helper = require('../common/helper');
 
 function login(req) {
     logger.info('inside login service, method login');
-    const payload = { email: req.body.email };
+    
+    let emailOrNot = helper.validateEmail(req.body.loginInfo);
+    let payload;
+    if(emailOrNot == true){
+        payload = { email: req.body.loginInfo };
+    }
+    else{
+        payload = { username: req.body.loginInfo };
+    }
+
     const signOpt = {
         issuer: config.ISSUER,
-        subject: req.body.email,
+        subject: req.body.loginInfo,
         expiresIn: config.EXPIRES_IN,
         algorithm: config.ALGORITHM,
     };
