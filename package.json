@@ -27,7 +27,8 @@
     "minimist": "*",
     "mocha": "^6.0.2",
     "chai": "^4.2.0",
-    "passport-google-oauth2": "^0.2.0"
+    "passport-google-oauth2": "^0.2.0",
+    "moment": "^2.24.0"
   },
   "author": "@vs",
   "license": "ISC",
