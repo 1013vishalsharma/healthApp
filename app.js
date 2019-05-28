@@ -14,6 +14,7 @@ require('./common/passport-auth')
 const loginRoute = require('./routes/LoginRoute')
 const workoutRoute = require('./routes/WorkoutRoute')
 const googleAuthRoute = require('./routes/GoogleAuthRoute');
+const workoutDetailsRoute = require('./routes/WorkoutDetailsRoute');
 const cors = require('cors');
 var subpath = express();
 
@@ -30,6 +31,7 @@ helper.initDB()
 app.use('/user', loginRoute)
 app.use('/workout', workoutRoute)
 app.use('/auth', googleAuthRoute);
+app.use('/workout/details', workoutDetailsRoute);
 
 app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
