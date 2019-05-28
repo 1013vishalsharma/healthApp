@@ -17,8 +17,19 @@ opts.issuer = config.ISSUER;
 
 
 passport.use(new jwtStrategy(opts, (token, done) => {
-    console.log('token: '+token)
-    userModel.userModel.findOne({ email: token.sub }, (err, user) => {
+    console.log('token: '+token);
+    let body;
+    if(token.username == undefined || token.username == null){
+        body = {
+            email : token.sub
+        }
+    }
+    else{
+        body = {
+            username : token.sub
+        }
+    }
+    userModel.userModel.findOne(body, (err, user) => {
         if(err){
             return done(err, false)
         }
