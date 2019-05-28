@@ -15,7 +15,9 @@ router.get('/weekDetails', (req, res, next) => {
             next(err);
         }
         else if(user){
-            workoutController.getWorkoutdetails(req, res, user)
+            workoutDetailsController.getWorkoutDetailsForCurrentWeek(req, res, user);
         }
     })(req, res, next)
 });
+
+module.exports = router

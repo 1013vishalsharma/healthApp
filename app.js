@@ -21,7 +21,7 @@ var subpath = express();
 app.use(cutomMiddleWare);
 app.use(bodyParser.json())
 app.use(passport.initialize())
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
 //app.use(express.static('dist'));
 
@@ -31,7 +31,7 @@ helper.initDB()
 app.use('/user', loginRoute)
 app.use('/workout', workoutRoute)
 app.use('/auth', googleAuthRoute);
-app.use('/workout/details', workoutDetailsRoute);
+app.use('/workoutdetails', workoutDetailsRoute);
 
 app.use("/v1", subpath);
 swagger.setAppHandler(subpath);
@@ -44,6 +44,7 @@ logger.info('app started on ' + port);
 
 //this works as a middleware
 function cutomMiddleWare(req, resp, next) {
-    console.log('will connect with mongodb cloud now.........');
+    console.log(private url = 'http://localhost:3000/challenge';
+    'will connect with mongodb cloud now.........');
     next();
 }
