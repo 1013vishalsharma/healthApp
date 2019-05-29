@@ -44,7 +44,6 @@ logger.info('app started on ' + port);
 
 //this works as a middleware
 function cutomMiddleWare(req, resp, next) {
-    console.log(private url = 'http://localhost:3000/challenge';
-    'will connect with mongodb cloud now.........');
+    console.log('will connect with mongodb cloud now.........');
     next();
 }

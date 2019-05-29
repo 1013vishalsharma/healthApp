@@ -15,9 +15,24 @@ router.get('/weekDetails', (req, res, next) => {
             next(err);
         }
         else if(user){
-            workoutDetailsController.getWorkoutDetailsForCurrentWeek(req, res, user);
+            workoutDetailsController.getWorkoutDetailsForCurrentWeek(req, res, user)
         }
     })(req, res, next)
 });
 
-module.exports = router
+
+router.get('/latestWorkoutDetails', (req, res, next) => {
+    passport.authenticate('jwt', {session: false}, (err, user, info) => {
+        if(err){
+            next(err);
+        }
+        else if(!user){
+            next(err);
+        }
+        else if(user){
+            workoutDetailsController.getLatestWorkoutDetails(req, res, user)
+        }
+    })(req, res, next)
+})
+
+module.exports = router;
