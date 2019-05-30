@@ -49,8 +49,10 @@ async function getLatestWorkoutDetails(req, res, user){
                                 });
 
     console.log(lastWorkoutDetails);
+    const wdate = new Date(lastWorkoutDetails.workoutDate);
+    //const wdate = 'hello'
     const dashboardDetails = {
-        workoutDate: lastWorkoutDetails.workoutDate,
+        workoutDate: wdate,
         workoutType: lastWorkoutDetails.workoutType,
         moneyCollected: lastWorkoutDetails.moneyCollected,
         foodType: lastWorkoutDetails.foodType
@@ -59,8 +61,31 @@ async function getLatestWorkoutDetails(req, res, user){
 }
 
 
+/**
+ * Method to get the workout details for the whole month
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} user 
+ */
+async function getWorkoutDetailsForCurrentMonth(req, res, user){
+
+    const startOfMonth = moment().startOf('month').toDate();
+    const endOfMonth = moment().endOf('month').toDate();
+
+    const monthDetails = await userWorkoutDetailsModel.find()
+                                .where({
+                                    user: user.username
+                                })
+                                .where('workoutDate')
+                                .gte(startOfMonth)
+                                .lte(endOfMonth);
+    console.log(monthDetails);
+    return monthDetails;
+                                
+}
 
 module.exports = {
     getWorkoutDetailsForCurrentWeek,
-    getLatestWorkoutDetails
+    getLatestWorkoutDetails,
+    getWorkoutDetailsForCurrentMonth,
 }

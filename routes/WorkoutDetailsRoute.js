@@ -35,4 +35,19 @@ router.get('/latestWorkoutDetails', (req, res, next) => {
     })(req, res, next)
 })
 
+
+router.get('/monthDetails', (req, res, next) => {
+    passport.authenticate('jwt', {session: false}, (err, user, info) => {
+        if(err){
+            next(err);
+        }
+        else if(!user){
+            next(err);
+        }
+        else if(user){
+            workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res, user)
+        }
+    })(req, res, next)
+})
+
 module.exports = router;
