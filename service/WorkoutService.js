@@ -62,19 +62,20 @@ async function addWorkoutDetails(req, res, user) {
     }
 
     // set the extra time left to cover up based on the type of food
-    let hrsLeft = latestUserWorkoutDetails.hrsleft;
+    let newHrsLeft = latestUserWorkoutDetails.hrsleft;
     if ((Number(req.body.workoutDuration)) < 35) {
-        hrsLeft = hrsLeft + .5;
+        newHrsLeft = newHrsLeft + .5;
     }
     if (helper.ignoreCase(foodType, 'unhealthy') && (Number(req.body.workoutDuration)) >= 35) {
-        hrsLeft = hrsLeft + .5;
+        newHrsLeft = newHrsLeft + .5;
     }
-    else if (hrsLeft > 0 && (Number(req.body.workoutDuration)) >= 35) {
-        hrsLeft = hrsLeft - .5;
+    else if (newHrsLeft > 0 && (Number(req.body.workoutDuration)) >= 35) {
+        newHrsLeft = newHrsLeft - .5;
     }
 
     // set the extra time left to cover up based on the type of food
     //let hrsLeft = (Number(latestUserWorkoutDetails.hrsLeft));
+    let workoutDate;
     if (req.body.workoutDuration)
         // set the workout date
         workoutDate = new Date(req.body.workoutDate);
@@ -82,7 +83,7 @@ async function addWorkoutDetails(req, res, user) {
     const addUserWorkoutDetails = await userWorkoutDetails.create({
         user: user.username,
         moneyCollected: moneyCollected,
-        hrsLeft: hrsLeft,
+        hrsleft: newHrsLeft,
         workoutDate: workoutDate,
         workedOutOrNot: true,
         workoutType: req.body.workoutType,
