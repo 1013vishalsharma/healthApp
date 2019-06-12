@@ -19,6 +19,8 @@ opts.issuer = config.ISSUER;
 passport.use(new jwtStrategy(opts, (token, done) => {
     console.log('token: '+token);
     let body;
+    let decoded = jwt.verify(token, config.JWT_SECRET);
+    console.log('decoded jwt: '+decoded);
     if(token.username == undefined || token.username == null){
         body = {
             email : token.sub
