@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const workoutDetailsController = require('../controller/WorkoutDetailsController');
+const AuthCheck = require('../middleware/AuthCheck');
 
 /**
  * api to get details for the current week
@@ -36,18 +37,23 @@ router.get('/latestWorkoutDetails', (req, res, next) => {
 })
 
 
-router.get('/monthDetails', (req, res, next) => {
-    passport.authenticate('jwt', {session: false}, (err, user, info) => {
-        if(err){
-            next(err);
-        }
-        else if(!user){
-            next(err);
-        }
-        else if(user){
-            workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res, user)
-        }
-    })(req, res, next)
+router.get('/monthDetails', AuthCheck.authCheck, (req, res, next) =>{
+    workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res);
 })
+
+// router.get('/monthDetails', (req, res, next) => {
+//     passport.authenticate('jwt', {session: false}, (err, user, info) => {
+//         if(err){
+//             next(err);
+//         }
+//         else if(!user){
+//             next(err);
+//         }
+//         else if(user){
+//             workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res, user)
+//         }
+//     })(req, res, next)
+// })
+
 
 module.exports = router;

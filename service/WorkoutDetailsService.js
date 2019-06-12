@@ -67,14 +67,14 @@ async function getLatestWorkoutDetails(req, res, user){
  * @param {*} res 
  * @param {*} user 
  */
-async function getWorkoutDetailsForCurrentMonth(req, res, user){
+async function getWorkoutDetailsForCurrentMonth(req, res){
 
     const startOfMonth = moment().startOf('month').toDate();
     const endOfMonth = moment().endOf('month').toDate();
 
     const monthDetails = await userWorkoutDetailsModel.find()
                                 .where({
-                                    user: user.username
+                                    user: req.userData.username
                                 })
                                 .where('workoutDate')
                                 .gte(startOfMonth)
