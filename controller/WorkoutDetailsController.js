@@ -12,9 +12,9 @@ async function getLatestWorkoutDetails(req, res, user){
     res.send(dashboardDetails);
 }
 
-async function getWorkoutDetailsForCurrentMonth(req, res, user){
+async function getWorkoutDetailsForCurrentMonth(req, res){
     logger.info('getting workout details for curent month');
-    const monthDetails = await workoutDetailsService.getWorkoutDetailsForCurrentMonth(req, res, user);
+    const monthDetails = await workoutDetailsService.getWorkoutDetailsForCurrentMonth(req, res);
     res.send(monthDetails);
 }
 
