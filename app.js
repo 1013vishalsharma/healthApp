@@ -17,6 +17,8 @@ const googleAuthRoute = require('./routes/GoogleAuthRoute');
 const workoutDetailsRoute = require('./routes/WorkoutDetailsRoute');
 const cors = require('cors');
 var subpath = express();
+var Promise = require('bluebird');
+var mongoose = Promise.promisifyAll(require('mongoose'));
 
 app.use(cutomMiddleWare);
 app.use(bodyParser.json())
