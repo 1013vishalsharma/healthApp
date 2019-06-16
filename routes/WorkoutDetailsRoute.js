@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const workoutDetailsController = require('../controller/WorkoutDetailsController');
-const AuthCheck = require('../middleware/AuthCheck');
+const AuthCheck = require('../middleware/AuthCheck').authCheck;
 
 /**
  * api to get details for the current week
@@ -37,7 +37,7 @@ router.get('/latestWorkoutDetails', (req, res, next) => {
 })
 
 
-router.get('/monthDetails', AuthCheck.authCheck, (req, res, next) =>{
+router.get('/monthDetails', AuthCheck, (req, res, next) =>{
     workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res);
 })
 
@@ -54,6 +54,10 @@ router.get('/monthDetails', AuthCheck.authCheck, (req, res, next) =>{
 //         }
 //     })(req, res, next)
 // })
+
+router.get('/workoutTypeStats' , AuthCheck, (req, res, next) => {
+    workoutDetailsController.getFullWorkoutTypeStats(req, res);
+});
 
 
 module.exports = router;

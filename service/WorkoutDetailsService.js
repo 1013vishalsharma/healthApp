@@ -1,6 +1,7 @@
 const moment = require('moment');
 const userWorkoutDetailsModel = require('../models/UserWorkoutDetails').userWorkoutDetailsModel;
 const logger = require('../common/logger');
+const _ = require('lodash');
 
 
 /**
@@ -84,8 +85,34 @@ async function getWorkoutDetailsForCurrentMonth(req, res){
                                 
 }
 
+
+function getFullWorkoutTypeStats(req, res){
+    logger.info('inside service method to get full workout stats')
+    let workoutDetails = userWorkoutDetailsModel.find()
+                                .where({
+                                    user: req.userData.username
+                                })
+    return workoutDetails;
+}
+
+function getWorkoutStats(result){
+    let stats = {};
+    _.forEach(result, (workoutDetails, index) => {
+        if(workoutDetails.workoutType in stats == false){
+            stats[workoutDetails.workoutType] = 1;
+        }
+        else{
+            stats[workoutDetails.workoutType] += 1;
+        }
+    })
+    console.log(stats);
+    return stats;
+}
+
 module.exports = {
     getWorkoutDetailsForCurrentWeek,
     getLatestWorkoutDetails,
     getWorkoutDetailsForCurrentMonth,
+    getFullWorkoutTypeStats,
+    getWorkoutStats,
 }

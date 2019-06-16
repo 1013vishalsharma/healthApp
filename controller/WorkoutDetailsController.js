@@ -18,8 +18,23 @@ async function getWorkoutDetailsForCurrentMonth(req, res){
     res.send(monthDetails);
 }
 
+function getFullWorkoutTypeStats(req, res){
+    logger.info('getting full stats for workout Type');
+    workoutDetailsService.getFullWorkoutTypeStats(req, res)
+                        .exec((err, result) => {
+                            if(err){
+                                res.status(500).send('Error fetching data');
+                            }
+                            else{
+                                let stats = workoutDetailsService.getWorkoutStats(result);
+                                res.status(200).send(stats);
+                            }
+                        });
+}
+
 module.exports = {
     getWorkoutDetailsForCurrentWeek,
     getLatestWorkoutDetails,
     getWorkoutDetailsForCurrentMonth,
+    getFullWorkoutTypeStats,
 }
