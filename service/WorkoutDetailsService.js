@@ -56,7 +56,7 @@ async function getLatestWorkoutDetails(req, res, user){
         workoutDate: wdate,
         workoutType: lastWorkoutDetails.workoutType,
         moneyCollected: lastWorkoutDetails.moneyCollected,
-        foodType: lastWorkoutDetails.foodType
+        hrsleft: lastWorkoutDetails.hrsleft
     }
     return dashboardDetails;
 }
