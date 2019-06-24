@@ -41,20 +41,6 @@ router.get('/monthDetails', AuthCheck, (req, res, next) =>{
     workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res);
 })
 
-// router.get('/monthDetails', (req, res, next) => {
-//     passport.authenticate('jwt', {session: false}, (err, user, info) => {
-//         if(err){
-//             next(err);
-//         }
-//         else if(!user){
-//             next(err);
-//         }
-//         else if(user){
-//             workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res, user)
-//         }
-//     })(req, res, next)
-// })
-
 router.get('/workoutTypeStats' , AuthCheck, (req, res, next) => {
     workoutDetailsController.getFullWorkoutTypeStats(req, res);
 });
