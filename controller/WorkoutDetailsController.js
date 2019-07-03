@@ -1,14 +1,14 @@
 const workoutDetailsService = require('../service/WorkoutDetailsService');
 const logger = require('../common/logger');
 
-async function getWorkoutDetailsForCurrentWeek(req, res, user){
+async function getWorkoutDetailsForCurrentWeek(req, res){
     logger.info('getting workout details for current week');
-    await workoutDetailsService.getWorkoutDetailsForCurrentWeek(req, res, user);
+    await workoutDetailsService.getWorkoutDetailsForCurrentWeek(req, res);
 }
 
-async function getLatestWorkoutDetails(req, res, user){
+async function getLatestWorkoutDetails(req, res){
     logger.info('getting last workout details')
-    const dashboardDetails = await workoutDetailsService.getLatestWorkoutDetails(req, res, user);
+    const dashboardDetails = await workoutDetailsService.getLatestWorkoutDetails(req, res);
     res.send(dashboardDetails);
 }
 
@@ -32,9 +32,25 @@ function getFullWorkoutTypeStats(req, res){
                         });
 }
 
+
+function getCalenderViewDetails(req, res){
+    logger.info('getting stats for calender view');
+    workoutDetailsService.getFullWorkoutTypeStats(req, res)
+                            .exec((err, result) => {
+                                if(err) {
+                                    res.status(500).send('Error fetching data');
+                                }
+                                else{
+                                    let stats = workoutDetailsService.getCalenderViewDetails(result);
+                                    res.status(200).send(stats);
+                                }
+                            })
+}
+
 module.exports = {
     getWorkoutDetailsForCurrentWeek,
     getLatestWorkoutDetails,
     getWorkoutDetailsForCurrentMonth,
     getFullWorkoutTypeStats,
+    getCalenderViewDetails,
 }

@@ -10,7 +10,7 @@ const _ = require('lodash');
  * @param {*} res 
  * @param {*} user 
  */
-async function getWorkoutDetailsForCurrentWeek(req, res, user){
+async function getWorkoutDetailsForCurrentWeek(req, res){
     //get the start and end of the week
     const startOfWeek = moment().startOf('isoweek').toDate();
     const endOfWeek   = moment().endOf('isoweek').toDate();
@@ -38,12 +38,12 @@ async function getWorkoutDetailsForCurrentWeek(req, res, user){
  * @param {*} res 
  * @param {*} user 
  */
-async function getLatestWorkoutDetails(req, res, user){
+async function getLatestWorkoutDetails(req, res){
     //get the last workout details
     const lastWorkoutDetails = await userWorkoutDetailsModel
                                 .findOne()
                                 .where({
-                                    user: user.username
+                                    user: req.userData.username
                                 })
                                 .sort({
                                     workoutDate: -1
@@ -51,7 +51,6 @@ async function getLatestWorkoutDetails(req, res, user){
 
     console.log(lastWorkoutDetails);
     const wdate = new Date(lastWorkoutDetails.workoutDate);
-    //const wdate = 'hello'
     const dashboardDetails = {
         workoutDate: wdate,
         workoutType: lastWorkoutDetails.workoutType,
@@ -109,10 +108,28 @@ function getWorkoutStats(result){
     return stats;
 }
 
+function getCalenderViewDetails(result){
+    let stats = [];
+    _.forEach(result, (workoutDetails, index) => {
+        if(workoutDetails.workoutDuration == undefined || workoutDetails.workoutDuration == null){
+            workoutDetails.workoutDuration = 0;
+        }
+        stats.push({
+            count: workoutDetails.workoutDuration,
+            day: workoutDetails.workoutDate
+        });
+    });
+    return stats;
+}
+
+
+
+
 module.exports = {
     getWorkoutDetailsForCurrentWeek,
     getLatestWorkoutDetails,
     getWorkoutDetailsForCurrentMonth,
     getFullWorkoutTypeStats,
     getWorkoutStats,
+    getCalenderViewDetails,
 }
