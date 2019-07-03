@@ -7,43 +7,27 @@ const AuthCheck = require('../middleware/AuthCheck').authCheck;
 /**
  * api to get details for the current week
  */
-router.get('/weekDetails', (req, res, next) => {
-    passport.authenticate('jwt', {session: false}, (err, user, info)=>{
-        if(err){
-            next(err);
-        }
-        else if(!user){
-            next(err);
-        }
-        else if(user){
-            workoutDetailsController.getWorkoutDetailsForCurrentWeek(req, res, user)
-        }
-    })(req, res, next)
+router.get('/weekDetails', AuthCheck, (req, res, next) => {
+    workoutDetailsController.getWorkoutDetailsForCurrentWeek(req, res)
 });
 
 
-router.get('/latestWorkoutDetails', (req, res, next) => {
-    passport.authenticate('jwt', {session: false}, (err, user, info) => {
-        if(err){
-            next(err);
-        }
-        else if(!user){
-            next(err);
-        }
-        else if(user){
-            workoutDetailsController.getLatestWorkoutDetails(req, res, user)
-        }
-    })(req, res, next)
-})
+router.get('/latestWorkoutDetails', AuthCheck, (req, res, next) => {
+    workoutDetailsController.getLatestWorkoutDetails(req, res)
+});
 
 
 router.get('/monthDetails', AuthCheck, (req, res, next) =>{
     workoutDetailsController.getWorkoutDetailsForCurrentMonth(req, res);
-})
+});
 
 router.get('/workoutTypeStats' , AuthCheck, (req, res, next) => {
     workoutDetailsController.getFullWorkoutTypeStats(req, res);
 });
+
+router.get('/calenderViewDetails', AuthCheck, (req, res, next) => {
+    workoutDetailsController.getCalenderViewDetails(req, res);
+})
 
 
 module.exports = router;
