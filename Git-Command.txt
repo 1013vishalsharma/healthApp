@@ -41,4 +41,6 @@ git remote -v
  3) git checkout b2
  4) git rebase master
 
+check for squash 1
+
  
