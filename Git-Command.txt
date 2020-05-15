@@ -42,5 +42,7 @@ git remote -v
  4) git rebase master
 
 check for squash 1
+check for squash 2
+
 
  
