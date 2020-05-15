@@ -43,6 +43,6 @@ git remote -v
 
 check for squash 1
 check for squash 2
-
+check for squash 3
 
  
