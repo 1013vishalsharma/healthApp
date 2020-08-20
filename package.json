@@ -10,7 +10,7 @@
     "serve": "nodemon app.js"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.5.3",
     "chai": "^4.2.0",
     "config": "^3.0.0",
