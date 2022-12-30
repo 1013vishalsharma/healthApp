@@ -19,7 +19,7 @@
     "joi": "^14.3.0",
     "jsonwebtoken": "^8.4.0",
     "minimist": "*",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
